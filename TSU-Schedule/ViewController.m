@@ -6,8 +6,11 @@
 //
 
 #import "ViewController.h"
+#import "WebKit/webkit.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet WKWebView *WebView;
 
 @end
 
@@ -15,7 +18,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+    NSURL *url = [NSURL URLWithString:@"https://tsu-schedule.space/"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    [_WebView loadRequest:request];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleDarkContent;
 }
 
 
